@@ -6,6 +6,10 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
 
+  if ("serviceWorker" in navigator) {
+		navigator.serviceWorker.register("service-worker.js");
+	}
+
   return (
     <>
       <div>
