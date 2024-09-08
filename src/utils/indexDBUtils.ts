@@ -1,10 +1,15 @@
+import { boardsStoreName } from "../components/boards/addBoard";
+import { bucketsStoreName } from "../components/buckets/addBuckets";
+import { itemsStoreName } from "../components/items/addItems";
+
+export const mainDBName = "trackItemsDB";
 export function addData(
 	data: unknown,
 	dbName: string,
 	storeName: string
 ): IDBRequest {
 	// Return type is IDBRequest for chaining
-	const request = indexedDB.open(dbName, 1);
+	const request = indexedDB.open(mainDBName, 1);
 
 	request.onupgradeneeded = (event: IDBVersionChangeEvent) => {
 		const db = (event.target as IDBOpenDBRequest)?.result;
@@ -33,7 +38,7 @@ export function addData(
 
 export function getData(dbName: string, storeName: string): Promise<unknown[]> {
 	return new Promise((resolve, reject) => {
-		const request = indexedDB.open(dbName, 1);
+		const request = indexedDB.open(mainDBName, 1);
 
 		request.onsuccess = (event: Event) => {
 			const db = (event.target as IDBOpenDBRequest)?.result;
@@ -61,3 +66,16 @@ export function getData(dbName: string, storeName: string): Promise<unknown[]> {
 		};
 	});
 }
+
+export const initializeAllStores = () => {
+	// This function is called when the app is first loaded
+	const request = indexedDB.open(mainDBName, 1);
+
+	request.onupgradeneeded = (event: IDBVersionChangeEvent) => {
+		const db = (event.target as IDBOpenDBRequest)?.result;
+		const stores = [bucketsStoreName, itemsStoreName, boardsStoreName];
+		stores.forEach((storeName) => {
+			db.createObjectStore(storeName, { keyPath: "id" });
+		});
+	};
+};

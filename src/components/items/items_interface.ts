@@ -2,5 +2,7 @@ export interface Item {
 	value: string | number;
 	label: string;
 	id: string;
-	childrenIds?: string[];
+	bucketId: string;
+	otherbucketId: string[];
+	createdAt: number;
 }
