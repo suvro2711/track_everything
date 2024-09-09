@@ -1,11 +1,10 @@
 import { addData } from "../../utils/indexDBUtils";
 import useIndexData from "../../utils/useIndexDB";
 import { generateRandomGUID } from "../../utils/utils";
-import { bucketsDBName, bucketsStoreName } from "../buckets/addBuckets";
+import { bucketsStoreName } from "../buckets/addBuckets";
 import { Bucket } from "../buckets/bucket_interface";
 import { Item } from "./items_interface";
 
-export const itemsDBName = "itemDB";
 export const itemsStoreName = "items";
 
 const Additem = () => {
@@ -24,7 +23,6 @@ const Additem = () => {
 				createdAt: Date.now(),
 				value: event.currentTarget.value.value,
 			} as Item,
-			itemsDBName,
 			itemsStoreName
 		);
 	};

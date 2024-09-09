@@ -3,11 +3,7 @@ import { bucketsStoreName } from "../components/buckets/addBuckets";
 import { itemsStoreName } from "../components/items/addItems";
 
 export const mainDBName = "trackItemsDB";
-export function addData(
-	data: unknown,
-	dbName: string,
-	storeName: string
-): IDBRequest {
+export function addData(data: unknown, storeName: string): IDBRequest {
 	// Return type is IDBRequest for chaining
 	const request = indexedDB.open(mainDBName, 1);
 
@@ -36,7 +32,7 @@ export function addData(
 	return request; // Return the request object for potential chaining
 }
 
-export function getData(dbName: string, storeName: string): Promise<unknown[]> {
+export function getData(storeName: string): Promise<unknown[]> {
 	return new Promise((resolve, reject) => {
 		const request = indexedDB.open(mainDBName, 1);
 

@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { getData, mainDBName } from "./indexDBUtils";
+import { getData } from "./indexDBUtils";
 
 const useIndexData = (storeName: string) => {
 	const [data, setData] = useState<unknown>(null);
 
 	useEffect(() => {
 		const fetchAllData = async () => {
-			const data: unknown[] = await getData(mainDBName, storeName);
+			const data: unknown[] = await getData(storeName);
 			setData(data);
 		};
 		fetchAllData();

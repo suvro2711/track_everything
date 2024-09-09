@@ -1,5 +1,5 @@
 import useIndexData from "../../utils/useIndexDB";
-import { itemsDBName, itemsStoreName } from "./addItems";
+import { itemsStoreName } from "./addItems";
 import { Item } from "./items_interface";
 
 const Items = () => {

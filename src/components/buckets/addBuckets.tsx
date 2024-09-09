@@ -5,7 +5,6 @@ import { boardsStoreName } from "../boards/addBoard";
 import { Board } from "../boards/borad_interface.";
 import { Bucket } from "./bucket_interface";
 
-export const bucketsDBName = "bucketsDB";
 export const bucketsStoreName = "buckets";
 
 const AddBucket = () => {
@@ -21,7 +20,6 @@ const AddBucket = () => {
 				boardId: event.currentTarget.boardId.value,
 				id: generateRandomGUID(),
 			} as Bucket,
-			bucketsDBName,
 			bucketsStoreName
 		);
 	};
